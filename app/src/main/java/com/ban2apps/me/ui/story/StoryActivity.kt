@@ -23,6 +23,8 @@ class StoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val factory = InjectorUtils.provideStoryViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory)[StoryViewModel::class.java]
 
@@ -42,11 +44,11 @@ class StoryActivity : AppCompatActivity() {
     }
 
     private fun showViews() {
-        val title = titleTextView.text
-        val story = storyTextView.text
         if (isEdit) {
             titleEditText.visibility = View.VISIBLE
             storyEditText.visibility = View.VISIBLE
+            val title = titleTextView.text
+            val story = storyTextView.text
             titleEditText.setText(title, TextView.BufferType.EDITABLE)
             storyEditText.setText(story, TextView.BufferType.EDITABLE)
             titleTextView.visibility = View.GONE
@@ -62,8 +64,10 @@ class StoryActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (isEdit) {
             menuInflater.inflate(R.menu.menu_edit_story, menu)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
         } else {
             menuInflater.inflate(R.menu.menu_read_story, menu)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
         return true
     }
@@ -88,12 +92,17 @@ class StoryActivity : AppCompatActivity() {
                 finish()
                 true
             }
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onBackPressed() {
         if (isEdit) {
+            isEdit = false
             showViews()
             invalidateOptionsMenu()
         } else {

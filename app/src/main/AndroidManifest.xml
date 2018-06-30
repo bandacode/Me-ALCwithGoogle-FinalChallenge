@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.story.StoryActivity"
-            android:parentActivityName=".ui.story.MainActivity"
             android:label="My Story"/>
     </application>
 
