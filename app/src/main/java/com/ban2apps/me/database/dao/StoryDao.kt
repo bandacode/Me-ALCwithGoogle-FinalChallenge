@@ -9,7 +9,7 @@ interface StoryDao {
     @Query("SELECT * FROM stories WHERE id = :id")
     fun getStory(id: Int): LiveData<Story>
 
-    @Query("SELECT * FROM stories")
+    @Query("SELECT * FROM stories ORDER BY timestamp DESC")
     fun getStories(): LiveData<List<Story>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
