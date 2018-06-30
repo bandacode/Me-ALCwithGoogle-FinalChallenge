@@ -12,6 +12,7 @@ import android.util.Log
 import android.widget.Toast
 import com.ban2apps.me.R
 import com.ban2apps.me.ui.story.MainActivity
+import com.ban2apps.me.utils.Prefs
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_launch.*
 
@@ -35,6 +36,7 @@ class LaunchActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        signInButton.setOnClickListener { signIn() }
 
         skipText.setOnClickListener {
             val intent = Intent(this@LaunchActivity, MainActivity::class.java)
@@ -65,12 +67,15 @@ class LaunchActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
+            Prefs.setId(this, account.id)
+            Prefs.setTokenId(this, account.idToken)
+
             // Signed in successfully, show authenticated UI.
             Toast.makeText(this, "Sign in Successful", Toast.LENGTH_SHORT).show()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("LauncherActivity", "signInResult:failed code=" + e.statusCode)
+            Log.w(LaunchActivity::class.java.simpleName, "signInResult:failed code=" + e.statusCode)
             Toast.makeText(this, "Sign in Failed", Toast.LENGTH_SHORT).show()
         }
 

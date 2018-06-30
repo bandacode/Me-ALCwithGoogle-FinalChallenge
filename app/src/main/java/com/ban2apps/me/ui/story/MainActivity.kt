@@ -6,11 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.ban2apps.me.R
 import com.ban2apps.me.utils.InjectorUtils
+import com.ban2apps.me.utils.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        Log.w(MainActivity::class.java.simpleName, "TokenId = ${Prefs.getTokenId(this)}, UserId = ${Prefs.getId(this)}")
 
         val factory = InjectorUtils.provideStoryViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory)[StoryViewModel::class.java]
