@@ -33,11 +33,13 @@ class LaunchActivity : AppCompatActivity() {
         if (account != null) {
             val intent = Intent(this@LaunchActivity, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         skipText.setOnClickListener {
             val intent = Intent(this@LaunchActivity, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }

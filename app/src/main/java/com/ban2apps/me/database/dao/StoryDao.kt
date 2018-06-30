@@ -20,4 +20,7 @@ interface StoryDao {
 
     @Query("DELETE FROM stories WHERE id = :id")
     fun delete(id: Int)
+
+    @Query("DELETE FROM stories")
+    fun deleteAll()
 }

@@ -30,26 +30,27 @@ class MainActivity : AppCompatActivity() {
         entriesRecycler.layoutManager = LinearLayoutManager(this)
         entriesRecycler.adapter = StoryAdapter(getStories()) {
             val intent = Intent(this@MainActivity, StoryActivity::class.java)
-            intent.putExtra("edit", true)
+            intent.putExtra("edit", false)
+            intent.putExtra("id", it.id)
             startActivity(intent)
         }
 
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, StoryActivity::class.java)
-            intent.putExtra("edit", false)
+            intent.putExtra("edit", true)
             startActivity(intent)
         }
     }
 
     private fun getStories(): List<Story> {
         val stories = ArrayList<Story>()
-        stories.add(Story(null,"Hi there", "How are you?", System.currentTimeMillis() - 100000))
-        stories.add(Story(null,"Good morning", "Top of the morning to you", System.currentTimeMillis() - 11000000))
-        stories.add(Story(null,"Afternoon", "Only after the morning", System.currentTimeMillis() - 36500000))
-        stories.add(Story(null,"Evening", "How was your day?", System.currentTimeMillis() - 150000000))
-        stories.add(Story(null,"Night", "How was your day?", System.currentTimeMillis() - 180000000))
-        stories.add(Story(null,"Whats up", "How was your day?", System.currentTimeMillis() - 230000000))
-        stories.add(Story(null,"Good night", "Don't let the bed bugs bite!", System.currentTimeMillis() - 450000000))
+        stories.add(Story(1,"Hi there", "How are you?", System.currentTimeMillis() - 100000))
+        stories.add(Story(2,"Good morning", "Top of the morning to you", System.currentTimeMillis() - 11000000))
+        stories.add(Story(3,"Afternoon", "Only after the morning", System.currentTimeMillis() - 36500000))
+        stories.add(Story(4,"Evening", "How was your day?", System.currentTimeMillis() - 150000000))
+        stories.add(Story(5,"Night", "How was your day?", System.currentTimeMillis() - 180000000))
+        stories.add(Story(6,"Whats up", "How was your day?", System.currentTimeMillis() - 230000000))
+        stories.add(Story(7,"Good night", "Don't let the bed bugs bite!", System.currentTimeMillis() - 450000000))
         return stories
     }
 
