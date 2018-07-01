@@ -10,7 +10,7 @@ object InjectorUtils {
     private fun provideRepository(context: Context): Repository {
         val database = MeDatabase.getInstance(context.applicationContext)
         val executor = AppExecutor.getInstance()
-        return Repository.getInstance(database, executor)
+        return Repository.getInstance(database, executor, context)
     }
 
     fun provideStoryViewModelFactory(context: Context): StoryViewModelFactory {

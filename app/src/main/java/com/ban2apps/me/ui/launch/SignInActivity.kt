@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.ban2apps.me.R
 import com.ban2apps.me.ui.story.MainActivity
+import com.ban2apps.me.utils.Prefs
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,7 +29,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
         // Initialize FirebaseAuth
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -43,12 +44,6 @@ class SignInActivity : AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
 
         signInButton.setOnClickListener { signIn() }
-
-        skipText.setOnClickListener {
-            val intent = Intent(this@SignInActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun signIn() {
@@ -79,6 +74,7 @@ class SignInActivity : AppCompatActivity() {
         mFirebaseAuth!!.signInWithCredential(credential)
                 .addOnCompleteListener(this) { task ->
                     Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful)
+                    Prefs.setId(this, acct.id)
 
                     // If sign in fails, display a message to the user. If sign in succeeds
                     // the auth state listener will be notified and logic to handle the

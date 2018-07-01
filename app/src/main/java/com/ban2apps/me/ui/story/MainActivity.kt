@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.ban2apps.me.R
 import com.ban2apps.me.ui.launch.SignInActivity
 import com.ban2apps.me.utils.InjectorUtils
@@ -89,16 +90,22 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> {
+            R.id.action_logout -> {
                 mFirebaseAuth!!.signOut()
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient)
                 mUsername = "anonymous"
+                viewModel.deleteAll()
+                Toast.makeText(this, "Logging you out...", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, SignInActivity::class.java))
                 finish()
                 true
             }
             R.id.action_delete_all -> {
                 viewModel.deleteAll()
+                true
+            }
+            R.id.action_sync -> {
+                viewModel.sync()
                 true
             }
             else -> super.onOptionsItemSelected(item)

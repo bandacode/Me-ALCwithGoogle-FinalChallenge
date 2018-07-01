@@ -8,7 +8,7 @@ class StoryViewModel(private val repository: Repository) : ViewModel() {
     fun getStory(id: Int) = repository.getStory(id)
     val stories = repository.stories
     fun insertStory(story: Story) = repository.insertStory(story)
-    fun insertAll(stories: List<Story>) = repository.insertAll(stories)
     fun deleteStory(id: Int) = repository.deleteStory(id)
     fun deleteAll() = repository.deleteAll()
+    fun sync() = repository.syncFromServer()
 }

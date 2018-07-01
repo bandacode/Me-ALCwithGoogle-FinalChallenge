@@ -15,9 +15,6 @@ interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(story: Story)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(stories: List<Story>)
-
     @Query("DELETE FROM stories WHERE id = :id")
     fun delete(id: Int)
 
