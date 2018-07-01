@@ -16,6 +16,7 @@ This is a journal app that records your thoughts at any given time of day. It re
 ### Features
 * The list of entries is displayed in a RecyclerView that groups them according to dates
 * The time is displayed according to how long ago you made the journal entry
+* Data is stored locally, and in the cloud for both offline and online access from seperate devices
 * Creating, Editing and Deleting journal entries is all handled seemlessly through a single activity, [StoryActivity](https://github.com/bandacode/Me-ALCwithGoogle-FinalChallenge/blob/master/app/src/main/java/com/ban2apps/me/ui/story/StoryActivity.kt)
 
 ## Author
