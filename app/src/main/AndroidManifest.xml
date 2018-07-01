@@ -11,16 +11,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.story.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.launch.LaunchActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.launch.SignInActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".ui.story.StoryActivity"
             android:label="My Story"/>
     </application>
